@@ -1,3 +1,115 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+  button {
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+
+  button:hover {
+    background-color: #ffb74d;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  .title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 4rem;
+    line-height: 1.2;
+    text-align: center;
+    margin: 1.5rem 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    word-spacing: 4px;
+    color: #840029;
+  }
+
+  .news-body {
+    font-family: 'Georgia', serif;
+    border: 10px solid #840029;
+    padding: 20px;
+    margin: 50px;
+  }
+
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .news-card {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    flex-grow: 1; 
+    display: flex; 
+    flex-direction: column; 
+  }
+
+  .news-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="5" height="5" viewBox="0 0 5 5"%3E%3Cpath fill="%23ccc" d="M4 0h1v1H4zm0 2h1v1H4zm0 2h1v1H4zM2 0h1v1H2zm0 2h1v1H2zm0 2h1v1H2zm-2 0h1v1H0zm0-2h1v1H0zm0-2h1v1H0z"/%3E%3C/svg%3E'); */
+    opacity: 0.15;
+    z-index: -1;
+  }
+
+  .news-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .news-card h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+    color: #840029;
+  }
+
+  .news-card p {
+    font-size: 1rem;
+    line-height: 1.4;
+    text-align: justify;
+  }
+
+  .news-card a {
+    display: inline-block;
+    margin-top: 1rem;
+    text-decoration: none;
+    color: #2d7ff9;
+  }
+
+  .news-card .full-coverage {
+    display: inline-block;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #840029;
+    margin-top: auto;
+    padding-top: 2rem;
+    width: fit-content; 
+  }
+  .news-card .full-coverage:hover {
+    color: #FDB913;
+    text-decoration: none;
+  }
