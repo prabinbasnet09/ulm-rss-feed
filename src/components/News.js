@@ -3,6 +3,7 @@ import axios from 'axios';
 import parseString from 'xml2js';
 import Pagination from './Pagination';
 import Image from 'next/image';
+import styles from '../styles/News.module.css';
 
 const ulmImage = '/ulm.png';
 const ITEMS_PER_PAGE = 3;
@@ -86,36 +87,61 @@ const News = () => {
 
       <p className='title'>Breaking News</p>
       <div className='news-grid'>
-        {newsItems ? (
-          paginate(newsItems, ITEMS_PER_PAGE, currentPage).map(
-            (item, index) => (
-              <div key={index} className='news-card'>
-                <Image
-                  src={item['media:content'][0]['media:thumbnail'][0].$.url}
-                  alt={item.title}
-                  width={100}
-                  height={100}
-                  layout='responsive'
-                />
-                <h2>{item.title}</h2>
-                <p>{item.description}</p>
-                <a
-                  href={item.link}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='full-coverage'
-                >
-                  Full Coverage &raquo;
-                </a>
-                <div className='mt-5 '>
-                  <p style={{ color: '#840029' }}>{formatDate(item.pubDate)}</p>
+        {newsItems
+          ? paginate(newsItems, ITEMS_PER_PAGE, currentPage).map(
+              (item, index) => (
+                <div key={index} className='news-card'>
+                  <Image
+                    src={item['media:content'][0]['media:thumbnail'][0].$.url}
+                    alt={item.title}
+                    width={100}
+                    height={100}
+                    layout='responsive'
+                  />
+                  <h2>{item.title}</h2>
+                  <p>{item.description}</p>
+                  <a
+                    href={item.link}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='full-coverage'
+                  >
+                    Full Coverage &raquo;
+                  </a>
+                  <div className='mt-5 '>
+                    <p style={{ color: '#840029' }}>
+                      {formatDate(item.pubDate)}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              )
             )
-          )
-        ) : (
-          <p>Loading...</p>
-        )}
+          : Array.from({ length: ITEMS_PER_PAGE }).map((_, index) => (
+              <div key={index} className='news-card'>
+                <div
+                  className={`${styles.skeleton} ${styles['skeleton-img']}`}
+                  style={{ position: 'relative' }}
+                >
+                  <Image
+                    src='/images/placeholder.png'
+                    alt='Loading'
+                    width={100}
+                    height={100}
+                    layout='responsive'
+                    className={styles.skeleton}
+                  />
+                </div>
+                <div
+                  className={`${styles.skeleton} ${styles['skeleton-text']}`}
+                ></div>
+                <div
+                  className={`${styles.skeleton} ${styles['skeleton-text']}`}
+                ></div>
+                <div
+                  className={`${styles.skeleton} ${styles['skeleton-text']}`}
+                ></div>
+              </div>
+            ))}
       </div>
 
       {newsItems && (
